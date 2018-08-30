@@ -11,7 +11,9 @@ public class ReverseList {
         if(head == null)
             return head;
         ListNode cur = head;
+        // 反转链表后的表头节点
         ListNode reverseHead = null;
+        // 可看作反转链表中节点的后继节点
         ListNode pre = null;
         while (cur != null){
             // 先保存cur的下一个节点
