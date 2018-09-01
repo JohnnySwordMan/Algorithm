@@ -3,15 +3,17 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * ������23���������´�ӡ������(��α���)
- * ��Ŀ�������������´�ӡ����������ÿ���ڵ㣬ͬ��ڵ�������Ҵ�ӡ��
+ * 面试题23：从上往下打印二叉树(层次遍历)
+ * 题目描述：从上往下打印出二叉树的每个节点，同层节点从左至右打印。
  * 
- * ��������α����ı��Σ���α�����ӡ�ڵ㣬��Ҫ�����սڵ�Ĳ�δ�ӡ����������һ�и��ڵ㣬�ڶ��и������Һ���...�ο�algorithm/binaryTree/LevelOrder.java
+ * 举例：层次遍历的变形，层次遍历打印节点，需要将按照节点的层次打印出来，即第一行根节点，第二行根的左右孩子...参考algorithm/LevelOrder.java
  * @author geyan
  *
  */
 public class PrintFromTopToBottom {
-
+	/**
+	 * 层次遍历一般使用队列来实现
+	 */
 	public ArrayList<Integer> printFromTopToBottom(TreeNode root) {
 		Queue<TreeNode> q = new LinkedList<>();
 		ArrayList<Integer> al = new ArrayList<>();

@@ -1,6 +1,6 @@
 /**
- * ÃæÊÔÌâ24£º¶þ²æËÑË÷Ê÷µÄºóÐò±éÀúÐòÁÐ
- * ÌâÄ¿ÃèÊö£ºÊäÈëÒ»¸öÕûÊýÊý×é£¬ÅÐ¶Ï¸ÃÊý×éÊÇ²»ÊÇÄ³¶þ²æËÑË÷Ê÷µÄºóÐò±éÀúµÄ½á¹û¡£Èç¹ûÊÇÔòÊä³öYes£¬·ñÔòÊä³öNo¡£¼ÙÉèÊäÈëµÄÊý×éµÄÈÎÒâÁ½¸öÊý×Ö¶¼»¥²»ÏàÍ¬¡£
+ * é¢è¯•é¢˜24ï¼šäºŒå‰æœç´¢æ ‘çš„åŽåºéåŽ†åºåˆ—
+ * é¢˜ç›®æè¿°ï¼šè¾“å…¥ä¸€ä¸ªæ•´æ•°æ•°ç»„ï¼Œåˆ¤æ–­è¯¥æ•°ç»„æ˜¯ä¸æ˜¯æŸäºŒå‰æœç´¢æ ‘çš„åŽåºéåŽ†çš„ç»“æžœã€‚å¦‚æžœæ˜¯åˆ™è¾“å‡ºYesï¼Œå¦åˆ™è¾“å‡ºNoã€‚å‡è®¾è¾“å…¥çš„æ•°ç»„çš„ä»»æ„ä¸¤ä¸ªæ•°å­—éƒ½äº’ä¸ç›¸åŒã€‚
  * 
  * @author geyan
  *
@@ -8,69 +8,44 @@
 public class VerifySquenceOfBST {
 
 	/**
-	 * Èç¹ûÊý×éÔªËØÊÇºóÐò±éÀúµÄ½á¹û£¬ÄÇÃ´×îºóÒ»¸öÔªËØÊÇ¸ù½Úµã¡£ 1¡¢È·¶¨root£»
-	 * 2¡¢±éÀúÐòÁÐ£¨³ýÈ¥root½áµã£©£¬ÕÒµ½µÚÒ»¸ö´óÓÚrootµÄÎ»ÖÃ£¬Ôò¸ÃÎ»ÖÃ×ó±ßÎª×ó×ÓÊ÷£¬ÓÒ±ßÎªÓÒ×ÓÊ÷£»
-	 * 3¡¢±éÀúÓÒ×ÓÊ÷£¬Èô·¢ÏÖÓÐÐ¡ÓÚrootµÄÖµ£¬ÔòÖ±½Ó·µ»Øfalse£» 4¡¢·Ö±ðÅÐ¶Ï×ó×ÓÊ÷ºÍÓÒ×ÓÊ÷ÊÇ·ñÈÔÊÇ¶þ²æËÑË÷Ê÷£¨¼´µÝ¹é²½Öè1¡¢2¡¢3£©¡£
+	 * å¦‚æžœæ•°ç»„å…ƒç´ æ˜¯åŽåºéåŽ†çš„ç»“æžœï¼Œé‚£ä¹ˆæœ€åŽä¸€ä¸ªå…ƒç´ æ˜¯æ ¹èŠ‚ç‚¹ã€‚ 
+	 * 1ã€ç¡®å®šrootï¼›
+	 * 2ã€éåŽ†åºåˆ—ï¼ˆé™¤åŽ»rootç»“ç‚¹ï¼‰ï¼Œæ‰¾åˆ°ç¬¬ä¸€ä¸ªå¤§äºŽrootçš„ä½ç½®ï¼Œåˆ™è¯¥ä½ç½®å·¦è¾¹ä¸ºå·¦å­æ ‘ï¼Œå³è¾¹ä¸ºå³å­æ ‘ï¼›
+	 * 3ã€éåŽ†å³å­æ ‘ï¼Œè‹¥å‘çŽ°æœ‰å°äºŽrootçš„å€¼ï¼Œåˆ™ç›´æŽ¥è¿”å›žfalseï¼› 
+	 * 4ã€åˆ†åˆ«åˆ¤æ–­å·¦å­æ ‘å’Œå³å­æ ‘æ˜¯å¦ä»æ˜¯äºŒå‰æœç´¢æ ‘ï¼ˆå³é€’å½’æ­¥éª¤1ã€2ã€3ï¼‰ã€‚
 	 */
-	public boolean verifySquenceOfBST_1(int[] a, int n) {
-		if (a == null || n <= 0)
+	public boolean verifySquenceOfBST(int[] a){
+		if(a == null || a.length == 0){
 			return false;
-		int root = a[n - 1];
-		int i = 0;
-		for (; i < n - 1; i++) {
-			if (a[i] > root)
-				break;
 		}
-		// ´ËÊ±a[i]´óÓÚ¸ù½Úµã£¬±íÊ¾iÒÔ¼°iÖ®ºóµÄÔªËØÓ¦¸ÃÊÇÓÒ×ÓÊ÷£¬½ÓÏÂÀ´ÅÐ¶ÏÏÂ
-		int j = i;
-		for (; j < n - 1; j++) {
-			if (a[j] < root)
-				return false;
+		if(a.length == 1){
+			return true;
 		}
-
-		boolean left = true;
-		if (i > 0) {
-			left = verifySquenceOfBST_1(a, i);
-		}
-
-		boolean right = true;
-		if (j < n - 1) {
-			right = verifySquenceOfBST_1(a, n - 1 - i);
-		}
-		return left && right;
+		return judge(a,0,a.length-1);
 	}
 
-	// ·½·¨¶þ£¬·½·¨Ò»Ð´·¨²»ºÃ
-	public boolean verifySquenceOfBST_2(int[] a, int start, int end) {
-		if (a == null || a.length <= 0) {
-			return false;
+	public boolean judge(int[] a, int start, int end) {
+		// éåŽ†å®Œæ•°ç»„çš„ä¸€éƒ¨åˆ†ï¼Œæ²¡æœ‰æŠ¥é”™ï¼Œåˆ™è¿”å›žtrue
+		if(start >= end){
+			return true;
 		}
-		
 		int root = a[end];
-		int i = 0;
-		for (; i < end; i++) {
-			if (a[i] > root) {
-				break;
-			}
+		int i = start;
+		while(a[i] < root){
+			i++;
 		}
-
+		// a[j]å¤§äºŽroot
 		int j = i;
-		for (; j < end; j++) {
-			if (a[j] < root) {
+		while(j < end){
+			if(a[j] < root){
+				// å³å­æ ‘ä¸­å­˜åœ¨å°äºŽæ ¹ç»“ç‚¹çš„å€¼ï¼Œè¯´æ˜Žä¸æ˜¯äºŒå‰æœç´¢æ ‘
 				return false;
 			}
+			j++;
 		}
-
-		// µÝ¹é×óÓÒÁ½²¿·Ö
-		boolean left = true;
-		if (i > start) {
-			left = verifySquenceOfBST_2(a, start, i - 1);
-		}
-
-		boolean right = true;
-		if (j < end) {
-			right = verifySquenceOfBST_2(a, j, end - 1);
-		}
+		// é€’å½’å·¦å³ä¸¤éƒ¨åˆ†
+		boolean left = judge(a,start,i-1);
+		boolean right = judge(a,i,end-1);
 		return left && right;
 	}
 }
