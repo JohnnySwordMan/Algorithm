@@ -7,6 +7,7 @@
 + [层次遍历二叉树](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/PrintFromTopToBottom.java)
 + [二叉树的镜像](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/Mirror.java)
 + [层次遍历，按行的样式打印](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/LevelOrder.java)
++ [最低公共祖先](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/LCA.java)
 
 ## 栈与队列
 + [两个栈实现队列](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/TwoStack.java)  
