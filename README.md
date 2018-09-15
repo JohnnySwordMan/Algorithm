@@ -7,6 +7,9 @@
 + [层次遍历二叉树](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/PrintFromTopToBottom.java)
 + [二叉树的镜像](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/Mirror.java)
 + [层次遍历，按行的样式打印](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/LevelOrder.java)
++ [最低公共祖先](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/LCA.java)
++ [二叉搜索树的第k个节点](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/KthNode.java)
++ [平衡二叉树的判断](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/IsBalanced.java)
 
 ## 栈与队列
 + [两个栈实现队列](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/TwoStack.java)  
@@ -21,15 +24,20 @@
 ## 链表
 + [反转链表](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/ReverseList.java)
 + [从尾到头打印链表](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/PrintListFromTailToHead.java)
-+ [合并两个有序链表](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/Merge.java)  
++ [合并两个有序链表](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/Merge.java)
++ [复杂链表的复制](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/Clone.java)  
 
 ## 数组
 + [调整数组顺序使奇数位于偶数之前](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/ReOrderArray.java)
 + [把数组排成最小的数](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/PrintMinNumber.java)
 + [数组中出现次数超过一半的数字](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/MoreThanHalfNum.java)
 + [旋转数组的最小数字](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/MinNumberInRotateArray.java)
-+ [圆圈中最后剩下的数字、约瑟夫环](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/LastRemaining.java)  
++ [圆圈中最后剩下的数字、约瑟夫环](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/LastRemaining.java)
++ [数组的逆序对](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/InversePairs.java)   
+
+## 其他
++ [跳台阶](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/JumpFloor.java)
++ [变态跳台阶](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/JumpFloorII.java) 
 
 ## 动态规划
 ## 贪心算法
-
