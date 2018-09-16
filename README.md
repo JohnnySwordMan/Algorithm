@@ -33,7 +33,10 @@
 + [数组中出现次数超过一半的数字](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/MoreThanHalfNum.java)
 + [旋转数组的最小数字](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/MinNumberInRotateArray.java)
 + [圆圈中最后剩下的数字、约瑟夫环](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/LastRemaining.java)
-+ [数组的逆序对](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/InversePairs.java)   
++ [数组的逆序对](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/InversePairs.java)  
+
+## 排序  
++ [归并排序](https://github.com/JohnnySwordMan/algorithm/blob/master/Sort/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F.md)   
 
 ## 其他
 + [跳台阶](https://github.com/JohnnySwordMan/algorithm/blob/master/JZOffer/JumpFloor.java)
