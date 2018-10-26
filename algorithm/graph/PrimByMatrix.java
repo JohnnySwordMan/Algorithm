@@ -1,60 +1,60 @@
 /**
- * 邻接矩阵表示下的图的prim算法 Prim:求最小生成树，n个顶点,n-1条边，且权值之和最小
- * 开始选择任意顶点V0，从剩余顶点中选择与VO相连的(即未加入到最小生成树的V0的邻居节点)，且权值最小的(假设选择的是V3)，那么将V0,
- * V3及其连边加入到最小生成树中 然后从与V0,V3的邻居节点中选择权值最小的(比如V4)，再从V0,V3,V4的邻居节点中选择权值最小的...
+ * 脕脷陆脫戮脴脮贸卤铆脢戮脧脗碌脛脥录碌脛prim脣茫路篓 Prim:脟贸脳卯脨隆脡煤鲁脡脢梅拢卢n赂枚露楼碌茫,n-1脤玫卤脽拢卢脟脪脠篓脰碌脰庐潞脥脳卯脨隆
+ * 驴陋脢录脩隆脭帽脠脦脪芒露楼碌茫V0拢卢麓脫脢拢脫脿露楼碌茫脰脨脩隆脭帽脫毛VO脧脿脕卢碌脛(录麓脦麓录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅碌脛V0碌脛脕脷戮脫陆脷碌茫)拢卢脟脪脠篓脰碌脳卯脨隆碌脛(录脵脡猫脩隆脭帽碌脛脢脟V3)拢卢脛脟脙麓陆芦V0,
+ * V3录掳脝盲脕卢卤脽录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅脰脨 脠禄潞贸麓脫脫毛V0,V3碌脛脕脷戮脫陆脷碌茫脰脨脩隆脭帽脠篓脰碌脳卯脨隆碌脛(卤脠脠莽V4)拢卢脭脵麓脫V0,V3,V4碌脛脕脷戮脫陆脷碌茫脰脨脩隆脭帽脠篓脰碌脳卯脨隆碌脛...
  * 
  * @author geyan
  *
  */
 public class PrimByMatrix {
 
-	// 图的顶点集合
+	// 脥录碌脛露楼碌茫录炉潞脧
 	private char[] mVexs;
 
-	// 邻接矩阵
+	// 脕脷陆脫戮脴脮贸
 	private int[][] mMatrix;
 
 	/**
-	 * 关键点就在于对weights数组的操作 
-	 * 1.weights数组赋值 
-	 * 2.找出weights数组中最小值 
-	 * 3.更新weights数组
+	 * 鹿脴录眉碌茫戮脥脭脷脫脷露脭weights脢媒脳茅碌脛虏脵脳梅 
+	 * 1.weights脢媒脳茅赂鲁脰碌 
+	 * 2.脮脪鲁枚weights脢媒脳茅脰脨脳卯脨隆脰碌 
+	 * 3.赂眉脨脗weights脢媒脳茅
 	 * 
 	 * @param start
-	 *            从图中第start节点开始生成最小树
+	 *            麓脫脥录脰脨碌脷start陆脷碌茫驴陋脢录脡煤鲁脡脳卯脨隆脢梅
 	 */
 	public void prim(int start) {
 		int num = mVexs.length;
 
-		// prim的结果数组
+		// prim碌脛陆谩鹿没脢媒脳茅
 		char[] prim = new char[num];
 		int index = 0;
-		// 首先将start顶点加入到最小生成树中
+		// 脢脳脧脠陆芦start露楼碌茫录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅脰脨
 		prim[index++] = mVexs[start];
 
-		// 不是各个顶点间的权值，weights[i]表示已加入到最小生成树中的顶点到未加入到最小生成树中的顶点i的权值
-		// 这样和图的遍历是类似的，都是需要将顶点分为两个部分，不同的是图的遍历，可以定义bool数组来表示是否已经被访问
-		// 这里涉及到权值，没有必要再去定义bool数组，可以设置令weights[i]=0,表示节点i已经加入到最小生成树中
+		// 虏禄脢脟赂梅赂枚露楼碌茫录盲碌脛脠篓脰碌拢卢weights[i]卤铆脢戮脪脩录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅脰脨碌脛露楼碌茫碌陆脦麓录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅脰脨碌脛露楼碌茫i碌脛脠篓脰碌
+		// 脮芒脩霉潞脥脥录碌脛卤茅脌煤脢脟脌脿脣脝碌脛拢卢露录脢脟脨猫脪陋陆芦露楼碌茫路脰脦陋脕陆赂枚虏驴路脰拢卢虏禄脥卢碌脛脢脟脥录碌脛卤茅脌煤拢卢驴脡脪脭露篓脪氓bool脢媒脳茅脌麓卤铆脢戮脢脟路帽脪脩戮颅卤禄路脙脦脢
+		// 脮芒脌茂脡忙录掳碌陆脠篓脰碌拢卢脙禄脫脨卤脴脪陋脭脵脠楼露篓脪氓bool脢媒脳茅拢卢驴脡脪脭脡猫脰脙脕卯weights[i]=0,卤铆脢戮陆脷碌茫i脪脩戮颅录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅脰脨
 		int[] weights = new int[num];
 
 		for (int i = 0; i < num; i++) {
-			// 以start为起点，将start到各个顶点的权值依次赋值给weights数组
+			// 脪脭start脦陋脝冒碌茫拢卢陆芦start碌陆赂梅赂枚露楼碌茫碌脛脠篓脰碌脪脌麓脦赂鲁脰碌赂酶weights脢媒脳茅
 			weights[i] = mMatrix[start][i];
 		}
 
-		// 若start已经加入到最小生成树中
+		// 脠么start脪脩戮颅录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅脰脨
 		weights[start] = 0;
 
-		// 每一次的循环需要找出weights数组中的最小值，然后更新weights
+		// 脙驴脪禄麓脦碌脛脩颅禄路脨猫脪陋脮脪鲁枚weights脢媒脳茅脰脨碌脛脳卯脨隆脰碌拢卢脠禄潞贸赂眉脨脗weights
 		for (int i = 0; i < num; i++) {
 			if (i == start)
 				continue;
 			int j = 0;
 			int k = 0;
 			int min = Integer.MAX_VALUE;
-			// 在未被加入到最小生成树的顶点中，找出权值最小的顶点
+			// 脭脷脦麓卤禄录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅碌脛露楼碌茫脰脨拢卢脮脪鲁枚脠篓脰碌脳卯脨隆碌脛露楼碌茫
 			while (j < num) {
-				// weights[j]!=0表示mVexs[j]节点并没有加入到最小生成树中，类似与图的遍历中的visited[j]
+				// weights[j]!=0卤铆脢戮mVexs[j]陆脷碌茫虏垄脙禄脫脨录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅脰脨拢卢脌脿脣脝脫毛脥录碌脛卤茅脌煤脰脨碌脛visited[j]
 				if (weights[j] != 0 && weights[j] < min) {
 					min = weights[j];
 					k = j;
@@ -62,10 +62,11 @@ public class PrimByMatrix {
 				j++;
 			}
 
-			// 此时，权值最小的顶点就是mVexs[k]，将该顶点加入到最小生成树中
+			// 麓脣脢卤拢卢脠篓脰碌脳卯脨隆碌脛露楼碌茫戮脥脢脟mVexs[k]拢卢陆芦赂脙露楼碌茫录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅脰脨
 			prim[index++] = mVexs[k];
-			// 因为mVexs[k]顶点已经加入到最小生成树中，所以weights[k]=0
-			// 更新weights数组，其实就是找出k与其他顶点的的权值和start与其他顶点的权值，如果前者小，则更新对应weights数组元素
+			weights[k] = 0;
+			// 脪貌脦陋mVexs[k]露楼碌茫脪脩戮颅录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅脰脨拢卢脣霉脪脭weights[k]=0
+			// 赂眉脨脗weights脢媒脳茅拢卢脝盲脢碌戮脥脢脟脮脪鲁枚k脫毛脝盲脣没露楼碌茫碌脛碌脛脠篓脰碌潞脥start脫毛脝盲脣没露楼碌茫碌脛脠篓脰碌拢卢脠莽鹿没脟掳脮脽脨隆拢卢脭貌赂眉脨脗露脭脫娄weights脢媒脳茅脭陋脣脴
 			for (j = 0; j < num; j++) {
 				if (weights[j] != 0 && mMatrix[k][j] < weights[j]) {
 					weights[j] = mMatrix[k][j];
@@ -75,7 +76,7 @@ public class PrimByMatrix {
 		// ----------------------------------------------------------------
 
 		/**
-		 * prim数组中元素就是依次加入到最小生成树的顶点
+		 * prim脢媒脳茅脰脨脭陋脣脴戮脥脢脟脪脌麓脦录脫脠毛碌陆脳卯脨隆脡煤鲁脡脢梅碌脛露楼碌茫
 		 */
 	}
 }
