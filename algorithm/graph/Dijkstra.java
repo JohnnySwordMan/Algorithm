@@ -1,6 +1,6 @@
 /**
- * Dijkstra£ºÄÜ¹»½â¾öÈ¨Öµ·Ç¸º£¬ÊÇµ¥Æğµã£¬¿ÉÒÔÇóµ½ËùÓĞ¶¥µãµÄ×î¶ÌÂ·¾¶¡£
- * È¨Öµ·Ç¸ºµÄÔ­ÒòÔÚÓÚ£¬¼ÙÉèÆğµãÊÇV0,´ËÊ±V1Ò²¼ÓÈëµ½×î¶ÌÂ·¾¶ÖĞ£¬ĞèÒªÅĞ¶ÏV0~V2ÓëV0~V1+V1~V2µÄ´óĞ¡£¬ÒòÎªÓĞÏà¼Ó£¬ËùÒÔÈ¨Öµ²»ÄÜÎª¸º
+ * Dijkstraï¼šèƒ½å¤Ÿè§£å†³æƒå€¼éè´Ÿï¼Œæ˜¯å•èµ·ç‚¹ï¼Œå¯ä»¥æ±‚åˆ°æ‰€æœ‰é¡¶ç‚¹çš„æœ€çŸ­è·¯å¾„ã€‚
+ * æƒå€¼éè´Ÿçš„åŸå› åœ¨äºï¼Œå‡è®¾èµ·ç‚¹æ˜¯V0,æ­¤æ—¶V1ä¹ŸåŠ å…¥åˆ°æœ€çŸ­è·¯å¾„ä¸­ï¼Œéœ€è¦åˆ¤æ–­V0~V2ä¸V0~V1+V1~V2çš„å¤§å°ï¼Œå› ä¸ºæœ‰ç›¸åŠ ï¼Œæ‰€ä»¥æƒå€¼ä¸èƒ½ä¸ºè´Ÿ
  * 
  * @author geyan
  *
@@ -11,19 +11,22 @@ public class Dijkstra {
 	private int[][] mMatrix;
 
 	/**
-	 * ¹Ø¼üÔÚÓÚ¶ÔdistÊı×éµÄ²Ù×÷£¬ÓëprimËã·¨ºÜÀàËÆ
-	 * 1.distÊı×é¸³Öµ
-	 * 2.ÕÒ³ödistÊı×éÖĞ×îĞ¡Öµ
-	 * 3.¸üĞÂdistÊı×é
+	 * å…³é”®åœ¨äºå¯¹distæ•°ç»„çš„æ“ä½œï¼Œä¸primç®—æ³•å¾ˆç±»ä¼¼
+	 * 1.distæ•°ç»„èµ‹å€¼
+	 * 2.æ‰¾å‡ºdistæ•°ç»„ä¸­æœ€å°å€¼
+	 * 3.æ›´æ–°distæ•°ç»„
 	 */
-	public void dijkstra(int start, int[] dist) {
+	public void dijkstra(int start) {
 		int num = mVexs.length;
 		boolean[] flag = new boolean[num];
+		int[] dist = new int[num];
 		for (int i = 0; i < num; i++) {
 			flag[i] = false;
 			dist[i] = mMatrix[start][i];
 		}
-		// ĞèÒªÑ­»·num-1´Î£¬Ã¿´ÎÕÒ³öÒ»¸ö¶¥µãµÄ×î¶ÌÂ·¾¶
+		flag[start] = true;
+		dist[start] = 0;
+		// éœ€è¦å¾ªç¯num-1æ¬¡ï¼Œæ¯æ¬¡æ‰¾å‡ºä¸€ä¸ªé¡¶ç‚¹çš„æœ€çŸ­è·¯å¾„
 		for (int i = 1; i < num; i++) {
 			int k = 0;
 			int min = Integer.MAX_VALUE;
@@ -33,11 +36,11 @@ public class Dijkstra {
 					k = j;
 				}
 			}
-			// ¶¥µãmVexs[k]µ½ÆğµãµÄÂ·¾¶×îĞ¡
+			// é¡¶ç‚¹mVexs[k]åˆ°èµ·ç‚¹çš„è·¯å¾„æœ€å°
 			flag[k] = true;
-			// ĞŞÕıdistÊı×é
+			// ä¿®æ­£distæ•°ç»„
 			for (int j = 0; j < num; j++) {
-				// ÀûÓÃ¶¥µãmVexs[k]£¬Çó³öÆğµãmVexs[start]µ½ÆäËû¶¥µãµÄÂ·¾¶
+				// åˆ©ç”¨é¡¶ç‚¹mVexs[k]ï¼Œæ±‚å‡ºèµ·ç‚¹mVexs[start]åˆ°å…¶ä»–é¡¶ç‚¹çš„è·¯å¾„
 				int temp = mMatrix[k][j] == Integer.MAX_VALUE ? Integer.MAX_VALUE : (min + mMatrix[k][j]);
 				if (!flag[j] && temp < dist[j]) {
 					dist[j] = temp;
@@ -45,9 +48,9 @@ public class Dijkstra {
 			}
 		}
 		// -------------------------------
-		// ´òÓ¡½á¹û£¬ÆğµãmVexs[start]µ½¸÷¶¥µãµÄ×î¶ÌÂ·¾¶³¤¶È
+		// æ‰“å°ç»“æœï¼Œèµ·ç‚¹mVexs[start]åˆ°å„é¡¶ç‚¹çš„æœ€çŸ­è·¯å¾„é•¿åº¦
 		for (int i = 0; i < num; i++) {
-			System.out.printf("×î¶ÌÂ·¾¶(%c,%c)=%d\n", mVexs[start], mVexs[i], dist[i]);
+			System.out.printf("æœ€çŸ­è·¯å¾„(%c,%c)=%d\n", mVexs[start], mVexs[i], dist[i]);
 		}
 	}
 }
