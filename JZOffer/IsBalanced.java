@@ -2,75 +2,69 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * ÃæÊÔÌâ39ÒıÉê£ºÊäÈëÒ»¿Ã¶ş²æÊ÷µÄ¸ù½Úµã£¬ÅĞ¶Ï¸ÃÊ÷ÊÇ²»ÊÇÆ½ºâ¶ş²æÊ÷¡£
- * ·ÖÎö£ºÆ½ºâ¶ş²æÊ÷µÄ¶¨Òå£ºÆ½ºâ¶ş²æÊ÷ÊÇÒ»ÖÖ¶ş²æÅÅĞòÊ÷£¬ÆäÖĞÃ¿Ò»¸ö½ÚµãµÄ×ó×ÓÊ÷ºÍÓÒ×ÓÊ÷¸ß¶È²îĞ¡ÓÚµÈÓÚ1¡£
- * ËùÒÔÏÈÅĞ¶ÏÊÇ·ñÊÇ¶ş²æÅÅĞòÊ÷£¬ÔÙÈ¥ÅĞ¶ÏÊÇ·ñÊÇÆ½ºâ¶ş²æÊ÷¡£
- * @author geyan
+ * é¢è¯•é¢˜39ï¼šè¾“å…¥ä¸€æ£µäºŒå‰æ ‘çš„æ ¹èŠ‚ç‚¹ï¼Œåˆ¤æ–­è¯¥æ ‘æ˜¯ä¸æ˜¯å¹³è¡¡äºŒå‰æ ‘ã€‚
  *
+ * @author geyan
  */
 public class IsBalanced {
 
-	public boolean isBalanced(TreeNode root) {
-		boolean[] res = new boolean[1];
-		// ³õÊ¼Æ½ºâ
-		res[0] = true;
-		boolean flag = isBinarySortTree(root);
-		if (flag) {
-			// Ê×ÏÈÊÇ¶ş²æÅÅĞòÊ÷£¬ÔÙÈ¥ÅĞ¶ÏÊÇ·ñÊÇ¶ş²æÆ½ºâÊ÷
-			getHeight(root, 1, res);
-			return res[0];
-		}
-		return true;
-	}
+    public boolean isBalanced(TreeNode root) {
+        boolean[] res = new boolean[1];
+        // åˆå§‹è®¤ä¸ºæ˜¯å¹³è¡¡çš„
+        res[0] = true;
+        getHeight(root, 1, res);
+        return res[0];
+    }
 
-	/**
-	 * ÅĞ¶ÏÊÇ·ñÊÇ¶ş²æÅÅĞòÊ÷ ÖĞĞò±éÀúÃ¿¸ö½Úµã£¬Èç¹û½ÚµãµÄÖµÒ»Ö±±ÈÉÏÒ»¸ö±éÀúµÄ½ÚµãÖµÒª´ó£¬ÔòËµÃ÷ÊÇ¶ş²æÅÅĞòÊ÷£¬·ñÔò²»ÊÇ¡£
-	 * ÎªÁË·½±ãÍ¬Ê±µÃµ½µ±Ç°½ÚµãºÍÉÏÒ»¸ö±éÀúµÄ½Úµã£¬¶ş²æÊ÷ÖĞĞò±éÀú·Çµİ¹éÊµÏÖ½ÏÎªºÏÊÊ¡£
-	 */
-	private boolean isBinarySortTree(TreeNode root) {
-		if (root == null)
-			return false;
-		ArrayList<Integer> al = new ArrayList<>();
-		Stack<TreeNode> stack = new Stack<>();
-		TreeNode cur = root;
-		while (!stack.isEmpty() || cur != null) {
-			if (cur != null) {
-				stack.push(cur);
-				cur = cur.left;
-			} else {
-				cur = stack.pop();
-				al.add(cur.val);
-				cur = cur.right;
+    /**
+     * ååºéå†ï¼Œåˆ¤æ–­æ ¹èŠ‚ç‚¹çš„å·¦å³å­æ ‘é«˜åº¦å·®æ˜¯å¦å°äºç­‰äº1
+     * åœ¨éå†ä¸€ä¸ªèŠ‚ç‚¹ä¹‹å‰ï¼Œæˆ‘ä»¬å°±å·²ç»çŸ¥é“è¯¥èŠ‚ç‚¹çš„å·¦å³å­æ ‘çš„é«˜åº¦
+     */
+    private int getHeight(TreeNode root, int level, boolean[] res) {
+        if (root == null)
+            return level;
+        int leftHeight = getHeight(root.left, level + 1, res);
+        // åˆå§‹res[0]=true,å¦‚æœé«˜åº¦å·®å¤§äº1ï¼Œåˆ™ä¸ºfalse
+        if (!res[0]) {
+            return leftHeight;
+        }
+        int rightHeight = getHeight(root.right, level + 1, res);
+        if (!res[0]) {
+            return rightHeight;
+        }
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            // å·¦å³å­æ ‘é«˜åº¦å·®å¤§äº1
+            res[0] = false;
+            return Math.max(leftHeight, rightHeight);
+        }
+        return Math.max(leftHeight, rightHeight);
+    }
 
-			}
-		}
-		for (int i = 1; i < al.size(); i++) {
-			if (al.get(i - 1) > al.get(i))
-				return false;
-		}
-		return true;
-	}
+    /**
+     * åˆ¤æ–­æ˜¯å¦æ˜¯äºŒå‰æ’åºæ ‘ ä¸­åºéå†æ¯ä¸ªèŠ‚ç‚¹ï¼Œå¦‚æœèŠ‚ç‚¹çš„å€¼ä¸€ç›´æ¯”ä¸Šä¸€ä¸ªéå†çš„èŠ‚ç‚¹å€¼è¦å¤§ï¼Œåˆ™è¯´æ˜æ˜¯äºŒå‰æ’åºæ ‘ï¼Œå¦åˆ™ä¸æ˜¯ã€‚
+     * ä¸ºäº†æ–¹ä¾¿åŒæ—¶å¾—åˆ°å½“å‰èŠ‚ç‚¹å’Œä¸Šä¸€ä¸ªéå†çš„èŠ‚ç‚¹ï¼ŒäºŒå‰æ ‘ä¸­åºéå†éé€’å½’å®ç°è¾ƒä¸ºåˆé€‚ã€‚
+     */
+    private boolean isBinarySortTree(TreeNode root) {
+        if (root == null)
+            return false;
+        ArrayList<Integer> al = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while (!stack.isEmpty() || cur != null) {
+            if (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            } else {
+                cur = stack.pop();
+                al.add(cur.val);
+                cur = cur.right;
 
-	/**
-	 * ºóĞò±éÀú£¬À´ÅĞ¶Ï¸ù½ÚµãµÄ×óÓÒ×ÓÊ÷¸ß¶È²îÊÇ·ñĞ¡ÓÚµÈÓÚ1
-	 */
-	private int getHeight(TreeNode root, int level, boolean[] res) {
-		if (root == null)
-			return level;
-		int leftHeight = getHeight(root.left, level + 1, res);
-		// ³õÊ¼res[0]=true,Èç¹û¸ß¶È²î´óÓÚ1£¬ÔòÎªfalse
-		if (!res[0]) {
-			return leftHeight;
-		}
-		int rightHeight = getHeight(root.right, level + 1, res);
-		if (!res[0]) {
-			return rightHeight;
-		}
-		if (Math.abs(leftHeight - rightHeight) > 1) {
-			// ×óÓÒ×ÓÊ÷¸ß¶È²î´óÓÚ1
-			res[0] = false;
-			return Math.max(leftHeight, rightHeight);
-		}
-		return Math.max(leftHeight, rightHeight);
-	}
+            }
+        }
+        for (int i = 1; i < al.size(); i++) {
+            if (al.get(i - 1) > al.get(i))
+                return false;
+        }
+        return true;
+    }
 }
