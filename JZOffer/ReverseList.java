@@ -7,24 +7,39 @@ public class ReverseList {
     /**
      * 输入一个链表，反转链表后，输出新链表的表头
      */
-    public ListNode reverseList(ListNode head){
-        if(head == null)
+    public ListNode reverseList(ListNode head) {
+        if (head == null)
             return head;
         ListNode cur = head;
         // 反转链表后的表头节点
         ListNode reverseHead = null;
         // 可看作反转链表中节点的后继节点
         ListNode pre = null;
-        while (cur != null){
+        while (cur != null) {
             // 先保存cur的下一个节点
             ListNode temp = cur.next;
-            if(temp == null){
+            if (temp == null) {
                 reverseHead = cur;
             }
             cur.next = pre;
             pre = cur;
             cur = temp;
         }
+
+
+        // 错误，当遍历到最后一个结点，由于else，导致最后一个结点并未与pre连接起来
+//        while (cur != null) {
+//            // 先保存cur的下一个节点
+//            ListNode temp = cur.next;
+//            if (temp == null) {
+//                reverseHead = cur;
+//            } else {
+//                cur.next = pre;
+//                pre = cur;
+//                cur = temp;
+//            }
+//
+//        }
         return reverseHead;
     }
 }
